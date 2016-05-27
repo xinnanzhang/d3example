@@ -1,0 +1,48 @@
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}
+.demoStyle{
+  fill:red;stroke:black;
+  stroke-width:5;opacity:0.5
+}
+
+.demo2{
+  background-color: #4CAF50;
+}
+.jquerydemo{
+  width:100px; height:100px; background:red; position:absolute;
+}
+.axis path,
+.axis line{
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-family: sans-serif;
+    font-size: 11px;
+}
+
+.MyRect {
+		fill: steelblue;
+	}
+
+	.MyText {
+		fill: white;
+		text-anchor: middle;
+	}
