@@ -14,13 +14,25 @@ var ExampleTopo = React.createClass({
       var x = Math.cos( i*40*Math.PI/180)*centerR + centerX;//临边 + 中心点高
       otherData.push({x:x,y:y,text:i});
     }
-    var data = {
+    var myData = {
   		centerNode : { text : '中心点' },
   		otherNode : otherData
   	};
-    var oG = eB1.append("g").attr("style","cursor:pointer");
+    var oG = eB1.selectAll("g").data(otherData).enter().append("g").attr("style","cursor:pointer");
     oG.append("circle").attr("cx",centerX).attr("cy",centerY).attr("r",40).attr("fill","white").attr("stroke","red").attr("stroke-width","1");
-    oG.append("text").attr("x",centerX).attr("y",centerY+8).attr("font-size",20).attr("text-anchor","middle").text("中心点");
+    // var oG = eB1
+    // .append("g").attr("style","cursor:pointer");
+    // oG.append("circle").attr("cx",centerX).attr("cy",centerY).attr("r",40).attr("fill","white").attr("stroke","red").attr("stroke-width","1");
+    // oG.append("text").attr("x",centerX).attr("y",centerY+8).attr("font-size",20).attr("text-anchor","middle").text("中心点");
+
+
+    // var svg = d3.select(".example2").append("svg").attr("width",300).attr("height",150);
+    // svg.selectAll("rect").data(dataset)
+    // .enter()//指定选择集的enter部分
+    // .append("rect").attr("x",20).attr("y",function(d,i){
+    //   return i * 25;
+    // })
+
     // eB1.selectAll("text").data(data)
     // .append("text").attr("x",centerX).attr("y",centerY+8)
     // .text(function(d,i){
