@@ -6,6 +6,7 @@
 import React from 'react';
 import Example1 from './example/example1';
 import ExampleB from './example/exampleB';
+import StudyManage from './StudyManage';
 var disX = 0;
 var disY = 0;
 
@@ -110,6 +111,7 @@ var Main = React.createClass({
     return(
       <div>
         <ExampleB />
+        <StudyManage />
         {/**
         <div className="demo1"></div>
         <div className="demo2"></div>
