@@ -56,3 +56,5 @@ body {
 #div1 img{
   width: 64px;
 }
+
+.box{ border:1px #000 solid; position:absolute;}
