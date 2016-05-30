@@ -1,5 +1,42 @@
 import React from 'react';
 
+var ExampleTopo = React.createClass({
+  componentDidMount(){
+    var eB1 = d3.select(".exampleTopo").append("svg").attr("width",500).attr("height",500);
+    //中心点
+    var centerX = eB1.attr("width")/2;
+    var centerY = eB1.attr("height")/2;
+    var circleNum = 9;//圆弧9等分
+    var centerR = 150;//圆半径
+    var otherData = [];
+    for(var i = 0;i < circleNum;i++){
+      var y = Math.sin( i*40*Math.PI/180 )*centerR + centerY;//对边 + 中心点宽
+      var x = Math.cos( i*40*Math.PI/180)*centerR + centerX;//临边 + 中心点高
+      otherData.push({x:x,y:y,text:i});
+    }
+    var data = {
+  		centerNode : { text : '中心点' },
+  		otherNode : otherData
+  	};
+    var oG = eB1.append("g").attr("style","cursor:pointer");
+    oG.append("circle").attr("cx",centerX).attr("cy",centerY).attr("r",40).attr("fill","white").attr("stroke","red").attr("stroke-width","1");
+    oG.append("text").attr("x",centerX).attr("y",centerY+8).attr("font-size",20).attr("text-anchor","middle").text("中心点");
+    // eB1.selectAll("text").data(data)
+    // .append("text").attr("x",centerX).attr("y",centerY+8)
+    // .text(function(d,i){
+    //   console.log("text",d);
+    //   return d.centerNode.text;
+    // }).attr("font-size",20).attr("text-anchor","middle");
+  },
+  render(){
+    return(
+      <div>
+        <div className="exampleTopo">
+        </div>
+      </div>
+    )
+  }
+});
 var ExampleB = React.createClass({
   componentDidMount(){
     //实现简单的动态效果
@@ -36,8 +73,8 @@ var ExampleB = React.createClass({
   render(){
     return(
       <div>
-      123
-        <div className="exampleB1"></div>
+        <div className="exampleB1" style={{float:"left"}}></div>
+        <ExampleTopo />
         <div className="exampleB2">
           <p>Hello</p>
           <p>World</p>

@@ -110,8 +110,9 @@ var Main = React.createClass({
 
     return(
       <div>
-        {/**<ExampleB />*/}
-        <StudyManage />
+        <ExampleB />
+        {/**
+        <StudyManage />**/}
         {/**
         <div className="demo1"></div>
         <div className="demo2"></div>
