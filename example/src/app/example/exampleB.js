@@ -215,68 +215,6 @@ var OrderTopo = React.createClass({
     }
 
     this.addOtherTag(otherData,eB1);
-    // //先添加线 节点可以覆盖多余的线条 ==================================================
-    // var oLine1 = eB1.append("g").attr("style","cursor:pointer");
-    // oLine1.selectAll("line").data(otherData).enter().append("line").attr("stroke","#ccc")
-    // .attr("x1",function(d,i){
-    //   return d.x;
-    // })
-    // .attr("y1",function(d,i){
-    //   return d.y;
-    // })
-    // .attr("x2",centerX)
-    // .attr("y2",centerY)
-    // //线中小方块
-    // oLine1.selectAll("rect").data(otherData).enter().append("rect").attr("fill","#999").attr("width",20).attr("height",20).attr("rx",5)
-    // .attr("x",function(d,i){
-    //   return (d.x + centerX)/2 -10;
-    // })
-    // .attr("y",function(d,i){
-    //   return (d.y + centerY)/2 - 10;
-    // })
-    // //线中文字
-    // oLine1.selectAll("text").data(otherData).enter().append("text").attr("fill","white").attr("font-size",20).attr("height",20).attr("text-anchor","middle")
-    // .attr("x",function(d,i){
-    //   return (d.x + centerX)/2;
-    // })
-    // .attr("y",function(d,i){
-    //   return (d.y + centerY)/2 +8;
-    // }).text("?")
-    //
-    // //添加其他点=================================================================
-    // var oG = eB1.append("g").attr("style","cursor:pointer");
-    // oG.selectAll("circle").data(otherData).enter()
-    // .append("circle")
-    // .attr("fill","white").attr("stroke","red").attr("stroke-width","1")
-    // .attr("cx",function(d,i){
-    //   return d.x;
-    // })
-    // .attr("cy",function(d,i){
-    //   return d.y;
-    // })
-    // .attr("r",25)
-    // .on("mouseover",function(d,i){
-    //   // alert();
-    //   _this.startMove( this , 30 , 40 );
-    //   //找到对应的线
-    //
-    // })
-    // .on("mouseout",function(d,i){
-    //   _this.startMove( this, 40 , 30 );
-    // });
-    //
-    // oG.selectAll("text").data(otherData).enter()
-    // .append("text")
-    // .attr("font-size",20).attr("text-anchor","middle")
-    // .attr("x",function(d,i){
-    //   return d.x;
-    // })
-    // .attr("y",function(d,i){
-    //   return d.y+8;
-    // })
-    // .text(function(d,i){
-    //   return d.text;
-    // })
 
     //添加中心点
     var cG = eB1
