@@ -2,6 +2,7 @@ import React from 'react';
 
 var ExampleTopo = React.createClass({
   componentDidMount(){
+    var _this = this;
     var eB1 = d3.select(".exampleTopo").append("svg").attr("width",500).attr("height",500);
     //中心点
     var centerX = eB1.attr("width")/2;
@@ -18,9 +19,6 @@ var ExampleTopo = React.createClass({
   		centerNode : { text : '中心点' },
   		otherNode : otherData
   	};
-    // var oG = eB1.selectAll("g").data(otherData).enter().append("g").attr("style","cursor:pointer");
-    // oG.append("circle").attr("cx",centerX).attr("cy",centerY).attr("r",40).attr("fill","white").attr("stroke","red").attr("stroke-width","1");
-
 
     //先添加线 节点可以覆盖多余的线条 ==================================================
     var oLine1 = eB1.append("g").attr("style","cursor:pointer");
@@ -50,7 +48,7 @@ var ExampleTopo = React.createClass({
       return (d.y + centerY)/2 +8;
     }).text("?")
 
-    //添加其他点=======
+    //添加其他点=================================================================
     var oG = eB1.append("g").attr("style","cursor:pointer");
     oG.selectAll("circle").data(otherData).enter()
     .append("circle")
@@ -61,7 +59,15 @@ var ExampleTopo = React.createClass({
     .attr("cy",function(d,i){
       return d.y;
     })
-    .attr("r",25);
+    .attr("r",25)
+    .on("mouseover",function(d,i){
+      // alert();
+      _this.startMove( this , 30 , 40 );
+    })
+    .on("mouseout",function(d,i){
+      _this.startMove( this, 40 , 30 );
+    });
+
     oG.selectAll("text").data(otherData).enter()
     .append("text")
     .attr("font-size",20).attr("text-anchor","middle")
@@ -81,19 +87,30 @@ var ExampleTopo = React.createClass({
     cG.append("circle").attr("cx",centerX).attr("cy",centerY).attr("r",40).attr("fill","white").attr("stroke","red").attr("stroke-width","1");
     cG.append("text").attr("x",centerX).attr("y",centerY+8).attr("font-size",20).attr("text-anchor","middle").text("中心点");
 
-    // var svg = d3.select(".example2").append("svg").attr("width",300).attr("height",150);
-    // svg.selectAll("rect").data(dataset)
-    // .enter()//指定选择集的enter部分
-    // .append("rect").attr("x",20).attr("y",function(d,i){
-    //   return i * 25;
-    // })
 
-    // eB1.selectAll("text").data(data)
-    // .append("text").attr("x",centerX).attr("y",centerY+8)
-    // .text(function(d,i){
-    //   console.log("text",d);
-    //   return d.centerNode.text;
-    // }).attr("font-size",20).attr("text-anchor","middle");
+
+  },
+  //动画效果  可以学习javascript中的运动
+  startMove(obj,r1,r2){
+    var nowR = r1;
+    var overR = r2;
+    obj.speed = 0;
+    clearInterval(obj.timer);
+    obj.timer = setInterval(function(){
+
+      obj.speed += (overR - nowR)/6;
+      obj.speed *= 0.9;
+
+      if( Math.abs(overR - nowR)<=1 && Math.abs(obj.speed)<=1 ){
+        clearInterval(obj.timer);
+        obj.setAttribute( 'r' , overR );
+      }
+      else{
+        nowR += obj.speed;
+        obj.setAttribute( 'r' , nowR );
+      }
+
+    },30);
   },
   render(){
     return(
