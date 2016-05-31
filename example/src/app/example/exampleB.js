@@ -18,13 +18,52 @@ var ExampleTopo = React.createClass({
   		centerNode : { text : '中心点' },
   		otherNode : otherData
   	};
-    var oG = eB1.selectAll("g").data(otherData).enter().append("g").attr("style","cursor:pointer");
-    oG.append("circle").attr("cx",centerX).attr("cy",centerY).attr("r",40).attr("fill","white").attr("stroke","red").attr("stroke-width","1");
-    // var oG = eB1
-    // .append("g").attr("style","cursor:pointer");
+    // var oG = eB1.selectAll("g").data(otherData).enter().append("g").attr("style","cursor:pointer");
     // oG.append("circle").attr("cx",centerX).attr("cy",centerY).attr("r",40).attr("fill","white").attr("stroke","red").attr("stroke-width","1");
-    // oG.append("text").attr("x",centerX).attr("y",centerY+8).attr("font-size",20).attr("text-anchor","middle").text("中心点");
 
+
+    //先添加线 节点可以覆盖多余的线条
+    var oLine1 = eB1.append("g").attr("style","cursor:pointer");
+    oLine1.selectAll("line").data(otherData).enter().append("line").attr("stroke","#ccc")
+    .attr("x1",function(d,i){
+      return d.x;
+    })
+    .attr("y1",function(d,i){
+      return d.y;
+    })
+    .attr("x2",centerX)
+    .attr("y2",centerY)
+
+    //添加其他点=======
+    var oG = eB1.append("g").attr("style","cursor:pointer");
+    oG.selectAll("circle").data(otherData).enter()
+    .append("circle")
+    .attr("fill","white").attr("stroke","red").attr("stroke-width","1")
+    .attr("cx",function(d,i){
+      return d.x;
+    })
+    .attr("cy",function(d,i){
+      return d.y;
+    })
+    .attr("r",25);
+    oG.selectAll("text").data(otherData).enter()
+    .append("text")
+    .attr("font-size",20).attr("text-anchor","middle")
+    .attr("x",function(d,i){
+      return d.x;
+    })
+    .attr("y",function(d,i){
+      return d.y+8;
+    })
+    .text(function(d,i){
+      return d.text;
+    })
+
+    //添加中心点
+    var cG = eB1
+    .append("g").attr("style","cursor:pointer");
+    cG.append("circle").attr("cx",centerX).attr("cy",centerY).attr("r",40).attr("fill","white").attr("stroke","red").attr("stroke-width","1");
+    cG.append("text").attr("x",centerX).attr("y",centerY+8).attr("font-size",20).attr("text-anchor","middle").text("中心点");
 
     // var svg = d3.select(".example2").append("svg").attr("width",300).attr("height",150);
     // svg.selectAll("rect").data(dataset)
